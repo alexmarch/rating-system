@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <% if @movie %>
+        <div class="col-sm-5" style="vertical-align: middle">
+          <h2>Poster</h2>
+          <%= content_tag :div, "Rate: #{@movie.vote_average}", style: "color: #fff" %>
+          <%= content_tag :div, nil, class: "rating", :data => {:score => @movie.vote_average} %>
+          <%= content_tag :div, "Rate: #{@movie.vote_average}" %>
+          <%= image_tag "#{@configuration.base_url}w300#{@movie.poster_path}" %>
+        </div>
+        <div class="col-sm-6">
+          <h1 style="text-align: left"><%= @movie.name %></h1>
+          <h4> Geners:
+            <span>
+            <% @movie.genres.each do |gener| %>
+                <%= gener["name"] %>
+            <% end %>
+            </span>
+          </h4>
+
+          <h2>Overview</h2>
+
+          <p class="overview">
+            <%= @movie.overview %>
+          </p>
+
+          <h2>Images</h2>
+          <% @images["backdrops"].each_with_index do |image, index| %>
+              <%= link_to "#{@configuration.base_url}w500#{image['file_path']}", style: "margin: 2px", :data => {lightbox: "images"} do %>
+                  <%= image_tag "#{@configuration.base_url}w92#{image['file_path']}" %>
+              <% end %>
+          <% end %>
+
+        </div>
+    <% end %>
+  </div>
+</div>

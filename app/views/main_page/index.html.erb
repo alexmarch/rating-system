@@ -1,0 +1,32 @@
+<div class="container-fluid rs-c">
+  <h1 class="article-title">Search for a movie</h1>
+  <%= form_tag search_result_path, :method => "get", :class => "form-horizontal", :style => "margin:auto; max-width:400px" do %>
+      <%= text_field :q, nil, :placeholder => "Search for", :class => "form-control" %>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-9">
+      <h2 style="margin-left: 5px">Now playing</h2>
+      <% @now_playing.each do |movie| %>
+          <% if movie["poster_path"] %>
+              <%= link_to movie_path(movie["id"]), :class => 'poster-link' do %>
+                  <%= content_tag :div, "Rate: #{movie["vote_average"]}" %>
+                  <%= content_tag :div, nil, class: "rating", :data => {:score => movie["vote_average"]} %>
+                  <%= image_tag("#{@configuration.base_url}w154#{movie["poster_path"]}") %>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+    <div class="col-sm-3">
+      <h2 style="margin-left: 5px">Popular TV</h2>
+      <% @popular_tv.each do |tv| %>
+          <% if tv["poster_path"] %>
+              <%= link_to tv_path(tv["id"]), :class => 'poster-link' do %>
+                  <%= content_tag :div, "Rate: #{tv["vote_average"]}" %>
+                  <%= content_tag :div, nil, class: 'rating-tv', :data => {:score => tv["vote_average"]} %>
+                  <%= image_tag("#{@configuration.base_url}w92#{tv["poster_path"]}") %>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

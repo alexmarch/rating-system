@@ -1,0 +1,64 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+@import "lightbox";
+@import "bootstrap";
+@import "bootstrap/theme";
+@import url(http://fonts.googleapis.com/css?family=News+Cycle:400,700);
+
+$h2Color: #FD7A00;
+$h1Color: #fff;
+
+@mixin drop-b-shadow($color) {
+  text-shadow: 1px 1px 0px $color;
+}
+
+body {
+  background: url("binding_dark.png");
+}
+
+h1 {
+  font-family: Metrophobic, Arial, serif;
+  font-weight: bold;
+  color: $h1Color;
+  text-align: center;
+  @include drop-b-shadow(#000);
+}
+
+h2 {
+  color: $h2Color;
+  @include drop-b-shadow(#802e0f)
+}
+
+h4 {
+  color: #ff8b39;
+  span {
+    color: #fff;
+  }
+}
+
+.poster-link {
+  &:hover {
+    text-decoration: none;
+  }
+  float: left;
+  img {
+    margin: 2px;
+  }
+}
+
+.overview {
+  color: #fff;
+  @include drop-b-shadow(#000)
+}
+

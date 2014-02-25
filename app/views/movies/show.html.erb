@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+    <% if @movie %>
+        <div class="col-sm-5" style="vertical-align: middle">
+          <h2>Poster</h2>
+          <%= content_tag :div, "Rate: #{@movie.vote_average}", style: "color: #fff" %>
+          <%= content_tag :div, nil, class: "rating", :data => {:score => @movie.vote_average} %>
+          <%= content_tag :div, "Rate: #{@movie.vote_average}" %>
+          <%= image_tag "#{@configuration.base_url}w300#{@movie.poster_path}" %>
+          <h4>Facts</h4>
+
+          <p class="overview">Budget:&nbsp;<%= number_to_currency(@movie.budget) %></p>
+
+          <p class="overview">Revenue:&nbsp;<%= number_to_currency(@movie.revenue) %></p>
+
+          <p class="overview">Status:&nbsp;<%= number_to_currency(@movie.status) %></p>
+
+          <p class="overview">Runtime:&nbsp;<%= number_to_currency(@movie.runtime) %></p>
+
+          <p class="overview">Release Date:&nbsp;<%= number_to_currency(@movie.release_date) %></p>
+
+          <h2>Trailers</h2>
+
+          <p>
+            <% if @trailers["quicktime"] %>
+                <% @trailers["quicktime"].each do |q| %>
+                    <%= link_to "#{q['name']}(#{q['size']})", "#", :target => "_blank" %>
+                <% end %>
+            <% end %>
+            <% if @trailers["youtube"] %>
+                <% @trailers["youtube"].each do |u| %>
+                    <%= link_to "#{u['name']}(#{u['size']})", "http://www.youtube.com/watch?v=#{u['source']}", :target => "_blank" %>
+                <% end %>
+            <% end %>
+          </p>
+
+          <h2 style="margin-left: 5px">Similar movies</h2>
+          <% @similar_movies.each do |movie| %>
+              <% if movie["poster_path"] %>
+                  <%= link_to movie_path(movie["id"]), :class => 'poster-link' do %>
+                      <%= content_tag :div, "Rate: #{movie["vote_average"]}" %>
+                      <%= content_tag :div, nil, class: "rating-tv", :data => {:score => movie["vote_average"]} %>
+                      <%= image_tag("#{@configuration.base_url}w92#{movie["poster_path"]}") %>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </div>
+        <div class="col-sm-6">
+          <h1 style="text-align: left"><%= @movie.original_title %></h1>
+          <h4> Geners:
+            <span>
+            <% @movie.genres.each do |gener| %>
+                <%= gener["name"] %>
+            <% end %>
+            </span>
+          </h4>
+
+          <h2>Overview</h2>
+
+          <p class="overview">
+            <%= @movie.overview %>
+          </p>
+
+          <h2>Tagline</h2>
+
+          <p class="overview">
+            <%= @movie.tagline %>
+          </p>
+
+          <h2>Images</h2>
+          <% @images["backdrops"].each_with_index do |image, index| %>
+              <%= link_to "#{@configuration.base_url}w500#{image['file_path']}", style: "margin: 2px", :data => {lightbox: "images"} do %>
+                  <%= image_tag "#{@configuration.base_url}w92#{image['file_path']}" %>
+              <% end %>
+          <% end %>
+
+          <h2>Casts</h2>
+
+          <div class="list-group">
+            <% @casts.each do |cast| %>
+                <%= link_to "#", class: "list-group-item" do %>
+                    <%= image_tag "#{@configuration.base_url}w92#{cast['profile_path']}" %>
+                    <%= cast["name"] %>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
