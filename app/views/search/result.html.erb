@@ -10,7 +10,7 @@
         <% if movie.poster_path %>
             <%= link_to movie_path(movie.id), :class => 'list-group-item' do %>
                 <%= content_tag :div, "Rate: #{movie.vote_average}" %>
-                <%= content_tag :div, nil, class: "rating-tv", :data => {:score => movie.vote_average} %>
+                <%= content_tag :div, nil, class: "rating-tv", :data => {id: movie.id, :score => Ratings.get_vote_average(movie.id), :readonly => Ratings.can_set_vote(movie.id, @client_ip)} %>
                 <%= image_tag("#{@configuration.base_url}w92#{movie.poster_path}") %>
                 <span style="font-size: 1.3em"><%= movie.original_title %></span>
             <% end %>

@@ -21,8 +21,6 @@ $(document).ready(function () {
 
     $.fn.raty.defaults.path = "/assets";
 
-    console.log("document redy");
-
     $('.rating').raty({
         number: 6,
         round: { down: .26, full: .6, up: .76 },
@@ -38,7 +36,7 @@ $(document).ready(function () {
                     if (data.vote_average) {
                         $(self).raty({readOnly: true, number: 6, half: true, width: 150, score: data.vote_average});
                         $(self).attr("data-readonly", "true");
-                        $(self).prev().text("Rate:" + data.vote_average);
+                        $(self).prev().text("Rate: " + data.vote_average);
                     }
                 });
             return false;
@@ -64,7 +62,7 @@ $(document).ready(function () {
                     if (data.vote_average) {
                         $(self).raty({readOnly: true, number: 4, half: true, width: 100, score: data.vote_average});
                         $(self).attr("data-readonly", "true");
-                        $(self).prev().text("Rate:" + data.vote_average);
+                        $(self).prev().text("Rate: " + data.vote_average);
                     }
                 });
             return false;
