@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vote: 9.99
+  vote_average: 1.5
+  movie_id: 
+
+two:
+  vote: 9.99
+  vote_average: 1.5
+  movie_id: 
