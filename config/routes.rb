@@ -1,6 +1,6 @@
 RatingSystem::Application.routes.draw do
 
-
+  get "ratings/score"
   get "tvs/show"
   get "users/show"
   get "search/result"
@@ -14,6 +14,7 @@ RatingSystem::Application.routes.draw do
 
   get '/movies/:id' => 'movies#show', as: :movie
   get '/tvs/:id' => 'tvs#show', as: :tv
+  post '/ratings/score' => 'ratings#score', as: :rating
 
   # Example of regular route:
 
@@ -65,5 +66,5 @@ RatingSystem::Application.routes.draw do
 
   resource :movies
   resource :tvs
-
+  resource :ratings
 end
