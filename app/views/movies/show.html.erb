@@ -4,7 +4,7 @@
         <div class="col-sm-5" style="vertical-align: middle">
           <h2>Poster</h2>
           <%= content_tag :div, "Rate: #{@movie.vote_average}", style: "color: #fff" %>
-          <%= content_tag :div, nil, class: "rating", :data => {id: movie.id, :score => Ratings.get_vote_average(@movie.id), :readonly => Ratings.can_set_vote(@movie.id, @client_ip)} %>
+          <%= content_tag :div, nil, class: "rating", :data => {id: @movie.id, :score => Ratings.get_vote_average(@movie.id), :readonly => Ratings.can_set_vote(@movie.id, @client_ip)} %>
           <%= content_tag :div, "Rate: #{@movie.vote_average}" %>
           <%= image_tag "#{@configuration.base_url}w300#{@movie.poster_path}" %>
           <h4>Facts</h4>
