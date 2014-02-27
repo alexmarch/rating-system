@@ -1,6 +1,6 @@
 class Ratings < ActiveRecord::Base
   belongs_to :movie
-
+  
   def self.get_vote_average(movie_id)
     rating = self.all.where(:movie_id => movie_id).average("vote_average")
     return rating if rating && rating > 0
